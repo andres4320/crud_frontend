@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from '../service/api/api.service';
 import { Country } from '../models/country.model';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import { NbWindowService } from '@nebular/theme';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-country',
@@ -17,8 +16,8 @@ export class CountryComponent implements OnInit {
 
   public countryData!: Country[];
   public name: string = '';
-
-  constructor(private countryService: ApiService) { }
+  
+  constructor(private countryService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.getCountry();
@@ -30,14 +29,20 @@ export class CountryComponent implements OnInit {
 
   async createCountry() {
     console.log('Entra')
-    this.countryService.createCountry('/countries/create', {name: this.name});
+    this.countryService.createCountry('countries/create', {name: this.name}).then((x) => {
+      this.getCountry();
+      this.name = '';
+    });
+
   }
 
-  update(countryId: any){
-    window.location.href = "country-update/"+countryId;
+  update(countryId: any) {
+    this.router.navigate(['country-update', countryId]);
   }
 
   async deleteCountry(id: any){
-    this.countryService.deleteCountry(id)
+    await this.countryService.deleteCountry(id)
+    this.getCountry();
+
   }
 }

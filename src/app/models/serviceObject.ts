@@ -1,9 +1,6 @@
 export class ServiceObject {
-    constructor(public entity?: string, public id?: number, public data?: any, public attributes?: any) {
-      this.entity = entity;
-      this.id = id;
+    constructor(public data?: any) {
       this.data = data;
-      this.attributes = attributes;
       this.status = false;
       this.message = ''; 
     }
