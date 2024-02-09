@@ -28,7 +28,7 @@ export class CountryComponent implements OnInit {
   }
 
   async createCountry() {
-    console.log('Entra')
+    // console.log('Entra')
     this.countryService.createCountry('countries/create', {name: this.name}).then((x) => {
       this.getCountry();
       this.name = '';
