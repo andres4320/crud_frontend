@@ -19,6 +19,7 @@ export class DepartamentComponent implements OnInit {
   public countryData: Country[] = [];
   public name: string = '';
   public country_id: number = 0;
+  public departament_id: number= 0;
 
   constructor(private service: ApiService, private router: Router) { }
 
@@ -26,11 +27,13 @@ export class DepartamentComponent implements OnInit {
   ngOnInit() {
     this.getDepartament();
     this.getCountry();
+
   }
 
   async getDepartament() {
     this.departamentData = await this.service.getDepartament('departaments');
     console.log('Departament data:', this.departamentData);
+    
   }
 
   async getCountry() {
@@ -52,4 +55,14 @@ export class DepartamentComponent implements OnInit {
   update(departamentId: any) {
     this.router.navigate(['departament-update', departamentId]);
   }
+
+  async getDepartamentDetails() {
+    const departamentoActual = this.departamentData.find(dep => dep.id === this.departament_id);
+    console.log(departamentoActual);
+    if (departamentoActual) {
+      this.name = departamentoActual.name;
+      this.country_id = departamentoActual.country_id;
+    }
+  }
+  
 }

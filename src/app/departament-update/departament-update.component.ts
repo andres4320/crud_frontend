@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Country } from '../models/country.model';
+import { Departament } from '../models/departament.model';
 
 
 @Component({
@@ -15,30 +16,47 @@ import { Country } from '../models/country.model';
   styleUrl: './departament-update.component.scss'
 })
 export class DepartamentUpdateComponent {
-  public name: string = '';
   public countryData: Country[] = [];
-  public departamentId: number | undefined;
+  public departamentActually: Departament[] = [];
+  public name: string = '';
+  public departament_id: number = 0;
   public country_id: number = 0;
+
 
 
   constructor(private departamentService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.departamentId = Number(params.get('id'));
+      this.departament_id = Number(params.get('id'));
     });
-    this.getCountry();
+    await this.getCountry();
+    await this.getDepartament();
+    // await this.getDepartamentDetails(); // Obtener detalles del departamento
+
   }
 
   async getCountry() {
     this.countryData = await this.departamentService.getCountry('countries');
   }
 
+  async getDepartament() {
+    this.departamentActually = await this.departamentService.getDepartamentById('departaments', this.departament_id);
+    console.log('Departament data:', this.departamentActually);
+
+    if (this.departamentActually) {
+      this.name = this.departamentActually[0].name; 
+      this.country_id = this.departamentActually[0].country_id;
+    }
+    
+  }
+
+
   async updateDepartament() {
     await this.departamentService.updateDepartament('departaments/update', {
-      name: this.name, id: this.departamentId,
+      name: this.name, id: this.departament_id,
       country_id: 0
     });
     this.router.navigate(['departament']);
-  }
+  } 
 }

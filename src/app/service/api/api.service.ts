@@ -48,6 +48,13 @@ export class ApiService {
     })
   }
 
+  getDepartamentById(entity: String, id: number): Promise<Departament[]> {
+    return this.httpClient.get(`${this.endpoint}${entity}/${id}`).toPromise().then((res) => {
+      var service = <ServiceObject>res
+      return <Departament[]>service.data;
+    })
+  }
+
   createDepartament(entity: String, departament: Departament): Promise<ServiceObject> {
     return this.httpClient.post(`${this.endpoint}${entity}`, departament).toPromise().then((res) => {
       return <ServiceObject>res;
