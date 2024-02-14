@@ -13,7 +13,6 @@ import { routes } from './app.routes';
 import { CountryComponent } from './country/country.component';
 import { DepartamentComponent } from './departament/departament.component';
 import { MunicipalityComponent } from './municipality/municipality.component';
-import { CountryUpdateComponent } from './country-update/country-update.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 
@@ -23,7 +22,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     DepartamentComponent,
     MunicipalityComponent,
     CountryComponent,
-    CountryUpdateComponent,
     AppComponent,
     NavbarComponent,
   ], 
