@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="card table-responsive m-4">
     <div class="card-header text-center">
         <h5 class="card-title">CRUD de Departamentos</h5>
@@ -54,7 +55,7 @@
                 </td>
                 <td>
                     <div class="form-group col-md-6">
-                        <button type="button" (click)="createDepartament()" class="btn btn-danger btn-sm">Eliminar</button>
+                        <button (click)="deleteDepartament(departament.id)" type="button" class="btn btn-danger btn-sm">Eliminar</button>
                     </div>
                 </td>
             </tr>

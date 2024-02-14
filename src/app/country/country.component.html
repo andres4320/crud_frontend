@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <div class="card table-responsive m-4">
     <div class="card-header text-center">
         <h5 class="card-title">CRUD de Paises</h5>
@@ -6,16 +8,19 @@
 
 <div class="card table-responsive m-4">
     <div class="card-header">
-        <h6 class="card-title text-center">Agregar País</h6>
+        <h6 class="card-title text-center">{{labelMain}} País</h6>
     </div>
     <div *ngIf="true" class="card-body">
         <form class="row">
             <label for="formCountry" class="mb-1">Nombre del país</label>
             <div class="col-7">
-                <input [(ngModel)]="name" type="text" class="form-control mb-2" [ngModelOptions]="{standalone: true}" id="formCountry" placeholder="Ingresa el nombre del país">
+                <input [(ngModel)]="name" type="text" class="form-control mb-2" [ngModelOptions]="{standalone: true}"
+                    id="formCountry" placeholder="Ingresa el nombre del país">
             </div>
             <div>
-                <button (click)="createCountry()" type="button" class="btn btn-primary btn-lg">Agregar país</button>
+                <button (click)="onButtonClick()" type="button" class="btn btn-primary btn-lg">
+                    {{labelMain}} País
+                </button>
             </div>
         </form>
     </div>
@@ -27,21 +32,20 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Actualizar</th>
+                <th scope="col">Actualizar</th> 
                 <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
             <tr *ngFor="let country of countryData; let i = index">
                 <td>{{ country.id }}</td>
-                <!-- <td>{{ i + 1 }}</td>  -->
                 <td>{{ country.name }}</td>
                 <td>
-                    <button (click)="update(country.id)" type="button"
-                        class="btn btn-success btn-sm">Actualizar</button>
+                    <button (click)="updateCountry(country)" type="button" class="btn btn-success btn-sm">Actualizar</button>
                 </td>
-                <td><button (click)="deleteCountry(country.id)" type="button"
-                        class="btn btn-danger btn-sm">Eliminar</button></td>
+                <td>
+                    <button (click)="deleteCountry(country.id)" type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
             </tr>
         </tbody>
     </table>

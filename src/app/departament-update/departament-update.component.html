@@ -6,7 +6,7 @@
                 <label for="inputCountry">Pais</label>
                 <select [(ngModel)]="country_id" [ngModelOptions]="{standalone: true}" id="inputCountry"
                     class="form-control">
-                    <option selected>Choose a Psaís...</option>
+                    <option selected>Elegi un País...</option>
                     <option [value]="country.id" *ngFor="let country of countryData">{{country.name}}</option>
                 </select>
                 <label for="formDepartament-Update" class="mb-1">Nombre del Departamento</label>

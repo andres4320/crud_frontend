@@ -67,5 +67,10 @@ export class ApiService {
     })
   }
 
+  deleteDepartament(id: number): Promise<ServiceObject> {
+    return this.httpClient.delete(`${this.endpoint}departaments/destroy/${id}`).toPromise().then((res) => {
+      return <ServiceObject>res;
+    })
+  }
   
 }

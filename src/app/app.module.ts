@@ -14,6 +14,7 @@ import { CountryComponent } from './country/country.component';
 import { DepartamentComponent } from './departament/departament.component';
 import { MunicipalityComponent } from './municipality/municipality.component';
 import { CountryUpdateComponent } from './country-update/country-update.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CountryUpdateComponent } from './country-update/country-update.componen
     CountryComponent,
     CountryUpdateComponent,
     AppComponent,
-  ],
+    NavbarComponent,
+  ], 
   imports: [
     BrowserModule,
     NgbModule,
@@ -34,6 +36,10 @@ import { CountryUpdateComponent } from './country-update/country-update.componen
     NbCardModule,
     CommonModule,
     RouterModule.forRoot(routes),
+    NavbarComponent
+  ],
+  exports: [
+    NavbarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

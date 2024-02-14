@@ -5,11 +5,13 @@ import { Departament } from '../models/departament.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+ import { NavbarComponent } from '../navbar/navbar.component';
+
 
 @Component({
   selector: 'app-departament',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './departament.component.html',
   styleUrl: './departament.component.scss'
 })
@@ -63,6 +65,11 @@ export class DepartamentComponent implements OnInit {
       this.name = departamentoActual.name;
       this.country_id = departamentoActual.country_id;
     }
+  }
+
+  async deleteDepartament(id: any){
+    await this.service.deleteDepartament(id)
+    this.getDepartament()
   }
   
 }
