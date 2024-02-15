@@ -22,7 +22,7 @@ export class CountryComponent implements OnInit {
   // public countryId: number = 0;
   // public updating: boolean = false;
 
-  constructor(private countryService: ApiService) { }
+  constructor(private countryService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.getCountry();
@@ -42,6 +42,7 @@ export class CountryComponent implements OnInit {
 
   async createCountry() {
     await this.countryService.createCountry('countries/create', { name: this.name }).then((x) => {
+      this.name = "";
       this.getCountry();
     });
   }
@@ -65,5 +66,9 @@ export class CountryComponent implements OnInit {
   async deleteCountry(id: any) {
     await this.countryService.deleteCountry(id)
     this.getCountry()
+  }
+
+  async viewDepartament() {
+    await this.router.navigate(['/departament']);
   }
 }
